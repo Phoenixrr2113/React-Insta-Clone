@@ -1,15 +1,12 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import Comment from './comment';
 const CommentSection = props => {
 	return (
 		<div>
-			<div>Comment Section</div>
+			{props.comments.map((el, i) => {
+				return <Comment text={el.text} key={i} />;
+			})}
 		</div>
 	);
 };
-
-// CommentSection.prototype = {
-
-// }
-
 export default CommentSection;
