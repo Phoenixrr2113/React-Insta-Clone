@@ -4,7 +4,9 @@ const CommentSection = props => {
 	return (
 		<div>
 			{props.comments.map((el, i) => {
-				return <Comment text={el.text} key={i} />;
+				return (
+					<Comment commentUser={el.username} commentText={el.text} key={i} />
+				);
 			})}
 		</div>
 	);
