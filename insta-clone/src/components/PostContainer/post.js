@@ -1,17 +1,31 @@
 import React from 'react';
+import {
+	Card,
+	CardHeader,
+	CardMedia,
+	CardTitle,
+	CardText,
+	// IconButton,
+} from 'material-ui/Card';
+import TextField from 'material-ui/TextField';
+
 import CommentSection from '../CommentSection/comment_section';
 
-const Post = props => {
-	return (
-		<div>
-			<div>{props.posts.username}</div>
-			{/* <div>{props.posts.thumbnailUrl}</div> */}
-			{/* <div>{props.posts.imageUrl}</div> */}
-			<div>{props.posts.likes}</div>
-			<div>{props.posts.timestamp}</div>
+const Post = props => (
+	<Card>
+		<CardHeader
+			title={props.posts.username}
+			avatar={props.posts.thumbnailUrl}
+		/>
+		<CardMedia>
+			<img src={props.posts.imageUrl} alt="" />
+		</CardMedia>
+		<CardTitle subtitle={props.posts.likes} />
+		<CardText>
 			<CommentSection comments={props.posts.comments} />
-		</div>
-	);
-};
+		</CardText>
+		<TextField floatingLabelText="Add a comment" />
+	</Card>
+);
 
 export default Post;
