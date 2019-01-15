@@ -7,13 +7,13 @@ import {
 	CardText,
 	// IconButton,
 } from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
 
 import CommentSection from '../CommentSection/comment_section';
 
 const Post = props => (
 	<Card>
 		<CardHeader
+			titleStyle={{ paddingTop: '8px' }}
 			title={props.posts.username}
 			avatar={props.posts.thumbnailUrl}
 		/>
@@ -21,10 +21,12 @@ const Post = props => (
 			<img src={props.posts.imageUrl} alt="" />
 		</CardMedia>
 		<CardTitle subtitle={props.posts.likes} />
-		<CardText>
-			<CommentSection comments={props.posts.comments} />
+		<CardText style={{ paddingBottom: 0 }}>
+			<CommentSection
+				timeStamp={props.posts.timestamp}
+				comments={props.posts.comments}
+			/>
 		</CardText>
-		<TextField floatingLabelText="Add a comment" />
 	</Card>
 );
 

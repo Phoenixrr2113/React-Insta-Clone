@@ -5,7 +5,9 @@ import Post from './post';
 
 const PostContainer = props => (
 	<MuiThemeProvider>
-		<Post posts={props.posts} />
+		<div className="post-container">
+			<Post posts={props.posts} />
+		</div>
 	</MuiThemeProvider>
 );
 
