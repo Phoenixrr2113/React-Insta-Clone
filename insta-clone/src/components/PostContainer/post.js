@@ -23,8 +23,11 @@ const Post = props => (
 		<CardTitle subtitle={props.posts.likes} />
 		<CardText style={{ paddingBottom: 0 }}>
 			<CommentSection
+				inputTerm={props.inputTerm}
+				addComment={props.addComment}
 				timeStamp={props.posts.timestamp}
 				comments={props.posts.comments}
+				handleChange={props.handleChange}
 			/>
 		</CardText>
 	</Card>

@@ -10,9 +10,14 @@ import SearchBar from './components/SearchBar/search_bar';
 
 class App extends Component {
 	state = {
-		postData: dummyData,
+		postData: [],
 		searchTerm: '',
+		newComment: '',
 	};
+
+	componentDidMount() {
+		this.setState({ postData: dummyData });
+	}
 
 	userSearch = event => {
 		event.preventDefault();
@@ -30,8 +35,37 @@ class App extends Component {
 		}
 	};
 
+	addNewComment = event => {
+		event.preventDefault();
+		this.setState({
+			postData: this.state.postData.map(user => {
+				return user.comments.push({
+					username: 'Randy-Wilson',
+					text: this.state.newComment,
+				});
+			}),
+		});
+	};
+
+	addNewPost = event => {
+		event.preventDefault();
+		this.setState({
+			postData: [
+				...this.state.postData,
+				{
+					username: 'Randy-Wilson',
+					thumbnailUrl: '',
+					imageUrl: '',
+					likes: 0,
+					timestamp: Date.now(),
+					comments: [],
+				},
+			],
+		});
+	};
+
 	onInputChange = event => {
-		this.setState({ searchTerm: event.target.value });
+		this.setState({ [event.target.name]: event.target.value });
 	};
 
 	render() {
@@ -53,7 +87,15 @@ class App extends Component {
 					</div>
 
 					{this.state.postData.map((el, i) => {
-						return <PostContainer posts={el} key={i} />;
+						return (
+							<PostContainer
+								inputTerm={this.state.newComment}
+								addComment={this.addNewComment}
+								handleChange={this.onInputChange}
+								posts={el}
+								key={i}
+							/>
+						);
 					})}
 				</div>
 			</MuiThemeProvider>

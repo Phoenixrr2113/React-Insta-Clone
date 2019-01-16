@@ -6,7 +6,12 @@ import Post from './post';
 const PostContainer = props => (
 	<MuiThemeProvider>
 		<div className="post-container">
-			<Post posts={props.posts} />
+			<Post
+				inputTerm={props.inputTerm}
+				addComment={props.addComment}
+				handleChange={props.handleChange}
+				posts={props.posts}
+			/>
 		</div>
 	</MuiThemeProvider>
 );

@@ -4,7 +4,11 @@ const SearchBar = props => {
 	return (
 		<div className="search-bar">
 			<form onSubmit={props.userSearch}>
-				<input value={props.inputTerm} onChange={props.handleChange} />
+				<input
+					name="searchTerm"
+					value={props.inputTerm}
+					onChange={props.handleChange}
+				/>
 			</form>
 		</div>
 	);
