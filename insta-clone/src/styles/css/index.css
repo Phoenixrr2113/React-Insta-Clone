@@ -25,3 +25,7 @@
   margin: 0 auto;
   width: 700px;
 }
+.App .search-bar {
+  margin: 0 auto;
+  width: 50%;
+}
