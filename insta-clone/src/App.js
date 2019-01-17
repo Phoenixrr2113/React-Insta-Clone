@@ -13,6 +13,7 @@ class App extends Component {
 		postData: [],
 		searchTerm: '',
 		newComment: '',
+		filteredUser: [],
 	};
 
 	componentDidMount() {
@@ -22,29 +23,30 @@ class App extends Component {
 	userSearch = event => {
 		event.preventDefault();
 
-		if (!this.state.searchTerm) {
-			this.setState({
-				postData: dummyData,
-			});
-		} else {
-			this.setState({
-				postData: this.state.postData.filter(post => {
-					return post.username === this.state.searchTerm;
-				}),
-			});
-		}
+		let typedKey = event.target.value;
+		let filteredUser = this.state.postData.filter(item => {
+			return item.username.indexOf(typedKey) > -1;
+		});
+		this.setState({
+			filteredUser,
+		});
 	};
 
 	addNewComment = event => {
 		event.preventDefault();
-		this.setState({
-			postData: this.state.postData.map(user => {
-				return user.comments.push({
-					username: 'Randy-Wilson',
-					text: this.state.newComment,
-				});
-			}),
-		});
+		// this.setState({
+		// postData: this.state.postData.map(user => {
+		// 	return user.comments.push({
+		// 		username: 'Randy-Wilson',
+		// 		text: this.state.newComment,
+		// 	});
+		// }),
+		// });
+
+		// Object.assign({
+		// 	username: 'Randy-Wilson',
+		// 	text: this.state.newComment
+		// },)
 	};
 
 	addNewPost = event => {
@@ -77,26 +79,33 @@ class App extends Component {
 							<i className="fab fa-instagram" />
 						</div>
 						<div className="search-bar">
-							<SearchBar
-								inputTerm={this.state.searchTerm}
-								handleChange={this.onInputChange}
-								userSearch={this.userSearch}
-							/>
+							<SearchBar userSearch={this.userSearch} />
 						</div>
 						<div className="profile-icons">ICONS</div>
 					</div>
-
-					{this.state.postData.map((el, i) => {
-						return (
-							<PostContainer
-								inputTerm={this.state.newComment}
-								addComment={this.addNewComment}
-								handleChange={this.onInputChange}
-								posts={el}
-								key={i}
-							/>
-						);
-					})}
+					{this.state.filteredUser.length === 0
+						? this.state.postData.map((el, i) => {
+								return (
+									<PostContainer
+										inputTerm={this.state.newComment}
+										addComment={this.addNewComment}
+										handleChange={this.onInputChange}
+										posts={el}
+										key={i}
+									/>
+								);
+						  })
+						: this.state.filteredUser.map((el, i) => {
+								return (
+									<PostContainer
+										inputTerm={this.state.newComment}
+										addComment={this.addNewComment}
+										handleChange={this.onInputChange}
+										posts={el}
+										key={i}
+									/>
+								);
+						  })}
 				</div>
 			</MuiThemeProvider>
 		);

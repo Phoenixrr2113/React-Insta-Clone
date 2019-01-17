@@ -5,7 +5,6 @@ import {
 	CardMedia,
 	CardTitle,
 	CardText,
-	// IconButton,
 } from 'material-ui/Card';
 
 import CommentSection from '../CommentSection/comment_section';

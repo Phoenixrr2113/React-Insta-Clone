@@ -1,6 +1,6 @@
 import React from 'react';
 import Comment from './comment';
-import TextField from 'material-ui/TextField';
+
 const CommentSection = props => {
 	if (!props.comments) {
 		return <div>no props...</div>;
@@ -14,13 +14,13 @@ const CommentSection = props => {
 				})}
 				<div className="time-posted">{props.timeStamp}</div>
 				<hr />
-				<form onSubmit={props.addComment}>
+				<div className="comment-input">
 					<input
 						name="newComment"
 						value={props.inputTerm}
 						onChange={props.handleChange}
 					/>
-				</form>
+				</div>
 			</div>
 		);
 	}
