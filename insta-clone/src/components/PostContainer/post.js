@@ -19,7 +19,16 @@ const Post = props => (
 		<CardMedia>
 			<img src={props.posts.imageUrl} alt="" />
 		</CardMedia>
-		<CardTitle subtitle={props.posts.likes} />
+		<div className="like-comment-btn">
+			<i class="far fa-heart" />
+			<i class="far fa-comment" />
+		</div>
+
+		<CardTitle
+			subtitleColor="black"
+			style={{ paddingTop: '5px' }}
+			subtitle={`${props.posts.likes} likes`}
+		/>
 		<CardText style={{ paddingBottom: 0 }}>
 			<CommentSection
 				inputTerm={props.inputTerm}

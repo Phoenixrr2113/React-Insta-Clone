@@ -1,10 +1,17 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
 
 const SearchBar = props => {
 	return (
-		<div className="search-bar">
-			<input name="searchTerm" onChange={props.userSearch} />
-		</div>
+		<TextField
+			hintText="What are we looking for?"
+			id="text-field-controlled"
+			name="searchTerm"
+			onChange={props.userSearch}
+			fullWidth={true}
+			floatingLabelText="Search"
+			floatingLabelStyle={{ paddingLeft: '40%' }}
+		/>
 	);
 };
 

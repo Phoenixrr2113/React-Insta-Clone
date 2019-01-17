@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import './styles/css/index.css';
+// import Login from './components/Login/Login';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import dummyData from './dummy-data';
 import PostContainer from './components/PostContainer/post_container';
 import SearchBar from './components/SearchBar/search_bar';
+import Auth from './Authentication/Auth';
 
 class App extends Component {
 	state = {
@@ -14,6 +16,8 @@ class App extends Component {
 		searchTerm: '',
 		newComment: '',
 		filteredUser: [],
+		loginName: '',
+		password: '',
 	};
 
 	componentDidMount() {
@@ -73,40 +77,54 @@ class App extends Component {
 	render() {
 		return (
 			<MuiThemeProvider>
-				<div className="App">
-					<div className="header">
-						<div className="logo">
-							<i className="fab fa-instagram" />
+				<Auth>
+					{/* <div>
+						<Login />
+					</div> */}
+					<div className="App">
+						<div className="header">
+							<div className="logo">
+								<i className="fab fa-instagram" />
+								<img
+									className="logo-img"
+									src="./img/1200px-insta-clone/src/img/1200px-Instagram_logo.svg.png.svg.png"
+									alt=""
+								/>
+							</div>
+							<div className="search-bar">
+								<SearchBar userSearch={this.userSearch} />
+							</div>
+							<div className="profile-icons">
+								<i className="far fa-compass" />
+								<i className="far fa-heart" />
+								<i className="far fa-user" />
+							</div>
 						</div>
-						<div className="search-bar">
-							<SearchBar userSearch={this.userSearch} />
-						</div>
-						<div className="profile-icons">ICONS</div>
+						{this.state.filteredUser.length === 0
+							? this.state.postData.map((el, i) => {
+									return (
+										<PostContainer
+											inputTerm={this.state.newComment}
+											addComment={this.addNewComment}
+											handleChange={this.onInputChange}
+											posts={el}
+											key={i}
+										/>
+									);
+							  })
+							: this.state.filteredUser.map((el, i) => {
+									return (
+										<PostContainer
+											inputTerm={this.state.newComment}
+											addComment={this.addNewComment}
+											handleChange={this.onInputChange}
+											posts={el}
+											key={i}
+										/>
+									);
+							  })}
 					</div>
-					{this.state.filteredUser.length === 0
-						? this.state.postData.map((el, i) => {
-								return (
-									<PostContainer
-										inputTerm={this.state.newComment}
-										addComment={this.addNewComment}
-										handleChange={this.onInputChange}
-										posts={el}
-										key={i}
-									/>
-								);
-						  })
-						: this.state.filteredUser.map((el, i) => {
-								return (
-									<PostContainer
-										inputTerm={this.state.newComment}
-										addComment={this.addNewComment}
-										handleChange={this.onInputChange}
-										posts={el}
-										key={i}
-									/>
-								);
-						  })}
-				</div>
+				</Auth>
 			</MuiThemeProvider>
 		);
 	}

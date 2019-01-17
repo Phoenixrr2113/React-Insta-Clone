@@ -20,6 +20,13 @@
   width: 350px;
   margin: 40px auto;
 }
+.post-container .like-comment-btn {
+  display: flex;
+  padding: 10px 15px 0;
+}
+.post-container .like-comment-btn i {
+  margin-right: 10px;
+}
 .App {
   border: 1px solid red;
   margin: 0 auto;
@@ -27,5 +34,25 @@
 }
 .App .search-bar {
   margin: 0 auto;
-  width: 50%;
+  width: 40%;
+}
+.App .header {
+  margin: 10px auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.App .header .profile-icons {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+.App .header .logo {
+  width: 5%;
+  font-size: 35px;
+}
+.App .header .logo-img {
+  width: auto;
+  height: 20px;
 }

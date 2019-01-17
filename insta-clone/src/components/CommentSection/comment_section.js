@@ -1,4 +1,5 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
 import Comment from './comment';
 
 const CommentSection = props => {
@@ -14,13 +15,15 @@ const CommentSection = props => {
 				})}
 				<div className="time-posted">{props.timeStamp}</div>
 				<hr />
-				<div className="comment-input">
-					<input
-						name="newComment"
-						value={props.inputTerm}
-						onChange={props.handleChange}
-					/>
-				</div>
+
+				<TextField
+					hintText="What's on your mind?"
+					id="text-field-controlled"
+					name="newComment"
+					onChange={props.handleChange}
+					fullWidth={true}
+					floatingLabelText="Add a comment..."
+				/>
 			</div>
 		);
 	}
